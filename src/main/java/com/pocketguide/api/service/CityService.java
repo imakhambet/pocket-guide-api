@@ -34,4 +34,8 @@ public class CityService {
         }
         return city.get();
     }
+    public City getCityByName(String name) {
+        Optional<City> city = cr.findByName(name);
+        return city.orElse(null);
+    }
 }

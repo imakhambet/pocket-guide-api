@@ -14,4 +14,7 @@ public interface CityRepository extends CrudRepository<City, Long> {
 
     @Override
     Optional<City> findById(Long aLong);
+
+    Optional<City> findByName(String name);
+
 }

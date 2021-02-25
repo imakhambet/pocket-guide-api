@@ -5,10 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,9 +26,14 @@ public class Museum extends AbstractEntity  {
     private City city;
     private String address;
     private String ticketInfo;
-    private String longitude;
-    private String latitude;
+    private double latitude;
+    private double longitude;
     private String photo;
     @OneToMany(mappedBy = "museum")
     private Set<Exhibit> exhibits = new HashSet<>();
+
+    public double getDistance(double curLat, double curLong){
+        double dist = org.apache.lucene.util.SloppyMath.haversinMeters(latitude, longitude, curLat, curLong);
+        return dist;
+    }
 }

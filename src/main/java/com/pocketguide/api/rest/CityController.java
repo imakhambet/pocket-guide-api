@@ -5,12 +5,13 @@ import com.pocketguide.api.model.Museum;
 import com.pocketguide.api.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
+/**
+ * @author imakhambet
+ */
 @RestController
 @RequestMapping(value = "/city", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CityController {
@@ -25,7 +26,15 @@ public class CityController {
     /* GET REQUESTS */
     /* ============ */
     @GetMapping(path = "/all", produces = "application/json")
-    public Set<City> findAll() {
+    public Set<City> getCities() {
+
         return cs.getAllCities();
+    }
+    @GetMapping(path = "/search", produces = "application/json")
+    public City getCity(@RequestParam String name){
+        if(name != null) {
+            return cs.getCityByName(name);
+        }
+        return null;
     }
 }

@@ -4,13 +4,13 @@ import com.pocketguide.api.model.Museum;
 import com.pocketguide.api.service.MuseumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
+/**
+ * @author imakhambet
+ */
 @RestController
 @RequestMapping(value = "/museum", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MuseumController {
@@ -25,8 +25,17 @@ public class MuseumController {
     /* ============ */
     /* GET REQUESTS */
     /* ============ */
-    @GetMapping(path = "/all", produces = "application/json")
-    public Set<Museum> findAll() {
+    @GetMapping(path = "/search", produces = "application/json")
+    public Set<Museum> getMuseums(@RequestParam(required=false) String city, @RequestParam(required=false) String lat, @RequestParam(required=false) String lon, @RequestParam(required=false) String ids) {
+        if(city != null && lat != null && lon != null) {
+            String[] cities = city.split(",");
+            return ms.getMuseumsByCities(cities, lat, lon);
+        } else if (ids != null){
+            System.out.println(ids);
+            String[] museumIds = ids.split(",");
+            return ms.getMuseumByIds(museumIds);
+        }
         return ms.getAllMuseums();
     }
+
 }
