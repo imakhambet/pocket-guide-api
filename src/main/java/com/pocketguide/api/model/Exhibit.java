@@ -14,9 +14,10 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 public class Exhibit extends AbstractEntity {
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Audio audio;
+
     @ManyToOne
     private Museum museum;
+    private String name;
+    @Column(columnDefinition="LONGTEXT")
+    private String description;
 }

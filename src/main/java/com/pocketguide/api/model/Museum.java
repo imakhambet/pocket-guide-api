@@ -29,6 +29,7 @@ public class Museum extends AbstractEntity  {
     private double latitude;
     private double longitude;
     private String photo;
+    @JsonIgnore
     @OneToMany(mappedBy = "museum")
     private Set<Exhibit> exhibits = new HashSet<>();
 
