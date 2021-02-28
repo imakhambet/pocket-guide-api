@@ -13,6 +13,7 @@ import java.util.Set;
  * @author imakhambet
  */
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/city", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CityController {
     private CityService cs;
