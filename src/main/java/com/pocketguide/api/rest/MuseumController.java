@@ -12,6 +12,7 @@ import java.util.Set;
  * @author imakhambet
  */
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/museum", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MuseumController {
 
