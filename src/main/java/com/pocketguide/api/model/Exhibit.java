@@ -20,4 +20,6 @@ public class Exhibit extends AbstractEntity {
     private String name;
     @Column(columnDefinition="LONGTEXT")
     private String description;
+    private String photo;
+
 }
